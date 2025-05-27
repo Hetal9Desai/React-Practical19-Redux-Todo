@@ -75,7 +75,9 @@ const todosSlice = createSlice({
 
       // editTodo
       .addCase(editTodo.fulfilled, (state, action: PayloadAction<Todo>) => {
-        const ix = state.items.findIndex((t) => t.id === action.payload.id);
+        const ix = state.items.findIndex(
+          (todo) => todo.id === action.payload.id
+        );
         if (ix !== -1) {
           state.items[ix] = action.payload;
         }
@@ -83,7 +85,7 @@ const todosSlice = createSlice({
 
       // removeTodo
       .addCase(removeTodo.fulfilled, (state, action: PayloadAction<string>) => {
-        state.items = state.items.filter((t) => t.id !== action.payload);
+        state.items = state.items.filter((todo) => todo.id !== action.payload);
       });
   },
 });
