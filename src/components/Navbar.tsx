@@ -1,22 +1,54 @@
 import React from "react";
-import { Container, Typography, Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  IconButton,
+  Box,
+} from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 
-const NotFound: React.FC = () => {
-  const navigate = useNavigate();
-  return (
-    <Container sx={{ textAlign: "center", mt: 5 }}>
-      <Typography variant="h4" gutterBottom>
-        404 - Page Not Found
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        The page you're looking for doesn't exist.
-      </Typography>
-      <Button variant="contained" onClick={() => navigate("/")}>
-        Go Home
-      </Button>
-    </Container>
-  );
-};
+interface NavBarProps {
+  currentMode: "light" | "dark";
+  onThemeToggle: () => void;
+}
 
-export default NotFound;
+export const NavBar: React.FC<NavBarProps> = ({
+  currentMode,
+  onThemeToggle,
+}) => (
+  <AppBar position="static">
+    <Toolbar>
+      <Typography
+        variant="h6"
+        component={RouterLink}
+        to="/todos"
+        color="inherit"
+        sx={{ textDecoration: "none", flexGrow: 1 }}
+      >
+        My TODOs
+      </Typography>
+
+      <Box sx={{ display: "flex", gap: 1, mr: 2 }}>
+        <Button color="inherit" component={RouterLink} to="/todos" size="small">
+          List
+        </Button>
+        <Button
+          color="inherit"
+          component={RouterLink}
+          to="/todos/form"
+          size="small"
+        >
+          Add Todo
+        </Button>
+      </Box>
+
+      <IconButton color="inherit" onClick={onThemeToggle}>
+        {currentMode === "light" ? <DarkModeIcon /> : <LightModeIcon />}
+      </IconButton>
+    </Toolbar>
+  </AppBar>
+);
