@@ -1,0 +1,91 @@
+import {
+  createSlice,
+  createAsyncThunk,
+  type PayloadAction,
+} from "@reduxjs/toolkit";
+import * as service from "../../services/todoService";
+import type { Todo } from "../../types/Task/types";
+
+interface TodosState {
+  items: Todo[];
+  loading: boolean;
+  error: string | null;
+}
+
+const initialState: TodosState = {
+  items: [],
+  loading: false,
+  error: null,
+};
+
+// fetch all todos
+export const fetchTodos = createAsyncThunk("todos/fetch", async () => {
+  const res = await service.getTodos();
+  return res.data as Todo[];
+});
+
+// add a new todo
+export const addTodo = createAsyncThunk(
+  "todos/add",
+  async (todo: Omit<Todo, "id" | "createdAt">) => {
+    const res = await service.createTodo(todo);
+    return res.data as Todo;
+  }
+);
+
+// edit an existing todo
+export const editTodo = createAsyncThunk("todos/edit", async (todo: Todo) => {
+  const res = await service.updateTodo(todo);
+  return res.data as Todo;
+});
+
+// remove a todo by id
+export const removeTodo = createAsyncThunk(
+  "todos/remove",
+  async (id: string) => {
+    await service.deleteTodo(id);
+    return id;
+  }
+);
+
+const todosSlice = createSlice({
+  name: "todos",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      // fetchTodos
+      .addCase(fetchTodos.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchTodos.fulfilled, (state, action: PayloadAction<Todo[]>) => {
+        state.items = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchTodos.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message ?? "Failed to fetch todos";
+      })
+
+      // addTodo
+      .addCase(addTodo.fulfilled, (state, action: PayloadAction<Todo>) => {
+        state.items.push(action.payload);
+      })
+
+      // editTodo
+      .addCase(editTodo.fulfilled, (state, action: PayloadAction<Todo>) => {
+        const ix = state.items.findIndex((t) => t.id === action.payload.id);
+        if (ix !== -1) {
+          state.items[ix] = action.payload;
+        }
+      })
+
+      // removeTodo
+      .addCase(removeTodo.fulfilled, (state, action: PayloadAction<string>) => {
+        state.items = state.items.filter((t) => t.id !== action.payload);
+      });
+  },
+});
+
+export default todosSlice.reducer;
