@@ -61,9 +61,9 @@ const TaskFilter: React.FC<TaskFilterProps> = ({
       fullWidth
     >
       <MenuItem value="">All</MenuItem>
-      {statuses.map((s) => (
-        <MenuItem key={s} value={s}>
-          {s}
+      {statuses.map((status) => (
+        <MenuItem key={status} value={status}>
+          {status}
         </MenuItem>
       ))}
     </TextField>

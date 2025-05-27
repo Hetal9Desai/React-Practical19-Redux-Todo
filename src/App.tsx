@@ -13,7 +13,6 @@ export const App: React.FC = () => {
   const dispatch = useDispatch();
   const mode = useSelector((s: RootState) => s.theme.mode);
 
-  // Memoize theme so it only rebuilds when `mode` changes
   const theme = useMemo(
     () =>
       createTheme({
@@ -24,9 +23,8 @@ export const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline /> {/* resets background/text for light/dark */}
+      <CssBaseline />
       <NavBar
-        // e.g. add a toggle button in your NavBar
         onThemeToggle={() => dispatch(toggleTheme())}
         currentMode={mode}
       />

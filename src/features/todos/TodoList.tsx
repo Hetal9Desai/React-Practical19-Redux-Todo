@@ -230,9 +230,9 @@ export const TodoList: React.FC = () => {
                       handleStatusChange(task, e.target.value as TodoStatus)
                     }
                   >
-                    {statuses.map((s) => (
-                      <MenuItem key={s} value={s}>
-                        {s}
+                    {statuses.map((status) => (
+                      <MenuItem key={status} value={status}>
+                        {status}
                       </MenuItem>
                     ))}
                   </TextField>

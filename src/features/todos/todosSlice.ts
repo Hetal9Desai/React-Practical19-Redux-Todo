@@ -18,13 +18,11 @@ const initialState: TodosState = {
   error: null,
 };
 
-// fetch all todos
 export const fetchTodos = createAsyncThunk("todos/fetch", async () => {
   const res = await service.getTodos();
   return res.data as Todo[];
 });
 
-// add a new todo
 export const addTodo = createAsyncThunk(
   "todos/add",
   async (todo: Omit<Todo, "id" | "createdAt">) => {
@@ -33,13 +31,11 @@ export const addTodo = createAsyncThunk(
   }
 );
 
-// edit an existing todo
 export const editTodo = createAsyncThunk("todos/edit", async (todo: Todo) => {
   const res = await service.updateTodo(todo);
   return res.data as Todo;
 });
 
-// remove a todo by id
 export const removeTodo = createAsyncThunk(
   "todos/remove",
   async (id: string) => {
@@ -54,7 +50,7 @@ const todosSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // fetchTodos
+
       .addCase(fetchTodos.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -68,12 +64,10 @@ const todosSlice = createSlice({
         state.error = action.error.message ?? "Failed to fetch todos";
       })
 
-      // addTodo
       .addCase(addTodo.fulfilled, (state, action: PayloadAction<Todo>) => {
         state.items.push(action.payload);
       })
 
-      // editTodo
       .addCase(editTodo.fulfilled, (state, action: PayloadAction<Todo>) => {
         const ix = state.items.findIndex(
           (todo) => todo.id === action.payload.id
@@ -83,7 +77,6 @@ const todosSlice = createSlice({
         }
       })
 
-      // removeTodo
       .addCase(removeTodo.fulfilled, (state, action: PayloadAction<string>) => {
         state.items = state.items.filter((todo) => todo.id !== action.payload);
       });
