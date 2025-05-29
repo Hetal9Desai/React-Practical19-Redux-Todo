@@ -1,54 +1,46 @@
-# React + TypeScript + Vite
+# Practical-19 Todos App to use Redux Toolkit
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Task Manager App
 
-Currently, two official plugins are available:
+A simple and intuitive task management application built with React and TypeScript. The app enables users to efficiently create, edit, delete, filter, and manage task statuses. This version uses Redux Toolkit for global state management and API integration for CRUD operations.
+Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+    - Create, Edit, View, and Delete Tasks: Manage tasks easily via a clean user interface.
 
-## Expanding the ESLint configuration
+    - Task Status Management: Organize tasks by statuses: To-Do, In Progress, and Done.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+    - Task Filtering: Filter tasks by title, description, or status.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+    - Global State Management: Centralized state with Redux Toolkit.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+    - API Integration: Fetch initial tasks and perform CRUD operations via REST APIs.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+    - Dark/Light Theme Support: Toggle themes with a sticky switch.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+    - Custom useTheme Hook: Easily manage theme state across the app.
+
+    - Responsive Design: Works on desktop and mobile using Bootstrap.
+
+Technologies Used
+
+    React (with Hooks)-
+
+    TypeScript
+
+    Redux Toolkit (for state and API calls)
+
+    React Router DOM
+
+    Zod (schema validation)
+
+    React Hook Form (form handling)
+
+    UUID (for unique task IDs)
+
+    Bootstrap (responsive UI)
+
+    Custom Hook (useTheme) for theme toggling
+
+## Deploy Link:
+
+https://melodic-faun-897957.netlify.app
