@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "./features/theme/themeSlice";
-import type { RootState } from "./app/store";
+import type { RootState } from "./store";
 import { NavBar } from "./components/Navbar";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { TodoList } from "./features/todos/TodoList";
