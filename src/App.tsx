@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleTheme } from "./features/theme/themeSlice";
+import { toggleTheme } from "./store/Theme/themeSlice";
 import type { RootState } from "./store";
 import { NavBar } from "./components/Navbar";
-import { Routes, Route, Navigate } from "react-router-dom";
 import { TodoList } from "./features/todos/TodoList";
 import { TodoForm } from "./features/todos/TodoForm";
 import NotFound from "./components/NotFound";

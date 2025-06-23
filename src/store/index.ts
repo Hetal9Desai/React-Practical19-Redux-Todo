@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import todosReducer from "../store/TODO/todosSlice";
-import themeReducer from "../features/theme/themeSlice";
+import todosReducer from "./Todo/todosSlice";
+import themeReducer from "./Theme/themeSlice";
 
 import {
   type TypedUseSelectorHook,

@@ -3,11 +3,13 @@ import { Box, Chip } from "@mui/material";
 import { useTheme, alpha } from "@mui/material/styles";
 import { TodoStatus } from "../../types/Task/types";
 
-const legendItems: {
+type LegendItem = {
   label: string;
   status: TodoStatus;
   color: "error" | "warning" | "success";
-}[] = [
+};
+
+const legendItems: LegendItem[] = [
   { label: "Todo", status: TodoStatus.TODO, color: "error" },
   { label: "In Progress", status: TodoStatus.IN_PROGRESS, color: "warning" },
   { label: "Done", status: TodoStatus.DONE, color: "success" },

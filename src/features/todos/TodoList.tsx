@@ -15,7 +15,7 @@ import {
   type Theme,
 } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../store";
-import { fetchTodos, removeTodo, editTodo } from "../../store/TODO/todosSlice";
+import { fetchTodos, removeTodo, editTodo } from "../../store/Todo/todosSlice";
 import { useNavigate } from "react-router-dom";
 import TaskFilter, { type FilterKey } from "./TaskFilter";
 import TaskStatusLegend from "./TaskStatusLegend";

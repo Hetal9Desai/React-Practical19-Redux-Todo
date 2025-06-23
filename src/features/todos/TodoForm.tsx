@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store";
-import { addTodo, editTodo, fetchTodos } from "../../store/TODO/todosSlice";
+import { addTodo, editTodo, fetchTodos } from "../../store/Todo/todosSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
 
 import { useForm, Controller } from "react-hook-form";
